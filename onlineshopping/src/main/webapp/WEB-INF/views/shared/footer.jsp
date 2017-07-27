@@ -28,7 +28,7 @@
 			<div class="container-fluid">
 				<div class="col-sm-8 col-sm-offset-2 text-center">
 					<div class="text-center">
-						<a onclick="" class="btn btn -social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+<a onclick="" class="btn btn -social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
 <a onclick="" class="btn btn -social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
 <a onclick="" class="btn btn -social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
 <a onclick="" class="btn btn -social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>						 
@@ -44,7 +44,7 @@
 		<!--/wrap-->
 
 		<p class="text-muted text-center">
-			All rights of this site are reserved <a href="#">Zaika.com</a>
+			All rights of this site are reserved <a href="">Zaika.com</a>
 		</p>
 	</div>
 
