@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "cart_line")
-public class CartLine implements Serializable {
+@Table(name = "order_item")
+public class OrderItem implements Serializable {
 
 	/**
 	 * 
@@ -22,61 +25,70 @@ public class CartLine implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@OneToOne
 	private Product product;
-	@Column(name = "cart_id")
-	private int cartId;	
-	@Column(name = "product_count")
-	private int productCount;
-	private double total;
-	@Column(name = "buying_price")
+	
+	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private OrderDetail orderDetail;
+
+	public OrderDetail getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(OrderDetail orderDetail) {
+		this.orderDetail = orderDetail;
+	}
+
+	@Column (name = "buying_price")
 	private double buyingPrice;
-	public double getBuyingPrice() {
-		return buyingPrice;
-	}
-	public void setBuyingPrice(double buyingPrice) {
-		this.buyingPrice = buyingPrice;
-	}
-	@Column(name = "is_available")
-	private boolean available = true;
+	
+	@Column (name = "product_count")
+	private int productCount;
+	
+	private double total;
+
 	
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Product getProduct() {
 		return product;
 	}
+
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public int getCartId() {
-		return cartId;
+
+
+	public double getBuyingPrice() {
+		return buyingPrice;
 	}
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
+
+	public void setBuyingPrice(double buyingPrice) {
+		this.buyingPrice = buyingPrice;
 	}
 
 	public int getProductCount() {
 		return productCount;
 	}
+
 	public void setProductCount(int productCount) {
 		this.productCount = productCount;
 	}
+
 	public double getTotal() {
 		return total;
 	}
+
 	public void setTotal(double total) {
 		this.total = total;
 	}
-	public boolean isAvailable() {
-		return available;
-	}
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
 		
-	
 }

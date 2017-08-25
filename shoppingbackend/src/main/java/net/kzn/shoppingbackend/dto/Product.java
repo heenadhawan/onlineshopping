@@ -1,5 +1,8 @@
 package net.kzn.shoppingbackend.dto;
 
+
+
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,31 +14,32 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+@Component
 @Entity
-public class Product {
+public class Product implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	// private fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String code;
-	
-	@NotBlank(message = "Please enter the Product Name!")
+	@NotBlank(message = "Please enter the product name!")
 	private String name;
-	@NotBlank(message = "Please enter the Brand Name!")
+	@NotBlank(message = "Please enter the brand name!")
 	private String brand;
-	@JsonIgnore
-	@NotBlank(message = "Please enter the description for Product!")
+	@NotBlank(message = "Please enter the description!")
 	private String description;
 	@Column(name = "unit_price")
-	@Min(value=1, message="The price cannot be less than 1!")
+	@Min(value = 1, message="Please select at least one value!")
 	private double unitPrice;
 	private int quantity;
-	@Column(name = "is_active")
+	@Column(name = "is_active")	
 	private boolean active;
 	@Column(name = "category_id")
 	@JsonIgnore
@@ -49,13 +53,10 @@ public class Product {
 	
 	@Transient
 	private MultipartFile file;
-	
-	
-	
+			
 	public MultipartFile getFile() {
 		return file;
 	}
-
 
 	public void setFile(MultipartFile file) {
 		this.file = file;
@@ -149,6 +150,7 @@ public class Product {
 	}
 
 	
+	// toString for debugging
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.kzn.shoppingbackend.dao.ProductDAO;
 import net.kzn.shoppingbackend.dto.Product;
 
 
@@ -128,6 +129,21 @@ public class ProductDAOImpl implements ProductDAO {
 							.setFirstResult(0)
 							.setMaxResults(count)
 								.getResultList();					
+	}
+
+	@Override
+	public List<Product> getProductsByParam(String param, int count) {
+		
+		String query = "FROM Product WHERE active = true ORDER BY " + param + " DESC";
+		
+		return sessionFactory
+					.getCurrentSession()
+					.createQuery(query,Product.class)
+					.setFirstResult(0)
+					.setMaxResults(count)
+					.getResultList();
+					
+		
 	}
 
 }
